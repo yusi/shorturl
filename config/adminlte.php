@@ -315,6 +315,24 @@ return [
             'type' => 'sidebar-menu-search',
             'text' => 'search',
         ],
+        ['header' => 'menu'],
+        [
+            'text' => '管理メニュー',
+            'icon' => 'fas fa-fw fa-cogs',
+            'submenu' => [
+                [
+                    'text' => 'サービス一覧',
+                    'url'  => 'admin/services',
+                    'icon' => 'fas fa-fw fa-list',
+                ],
+                [
+                    'text' => 'イベント一覧',
+                    'url'  => 'admin/events',
+                    'icon' => 'fas fa-fw fa-calendar',
+                ],
+            ],
+        ],
+        ['header' => 'サンプル'],
         [
             'text' => 'blog',
             'url' => 'admin/blog',
