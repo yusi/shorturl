@@ -19,8 +19,23 @@
                         <span class="invalid-feedback">{{ $message }}</span>
                     @enderror
                 </div>
-                <button type="submit" class="btn btn-primary">更新</button>
-                <a href="{{ route('services.index') }}" class="btn btn-secondary">戻る</a>
+                <div class="form-group">
+                    <label>作成日時</label>
+                    <input type="text" class="form-control" value="{{ $service->created_at }}" readonly>
+                </div>
+                <div class="form-group">
+                    <label>更新日時</label>
+                    <input type="text" class="form-control" value="{{ $service->updated_at }}" readonly>
+                </div>
+                <div class="btn-group">
+                    <button type="submit" class="btn btn-primary">更新</button>
+                    <a href="{{ route('services.index') }}" class="btn btn-secondary">戻る</a>
+                </div>
+            </form>
+            <form action="{{ route('services.destroy', $service) }}" method="POST" class="mt-3">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="btn btn-danger" onclick="return confirm('本当に削除しますか？')">削除</button>
             </form>
         </div>
     </div>

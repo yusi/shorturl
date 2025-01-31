@@ -17,24 +17,17 @@
                     <tr>
                         <th>ID</th>
                         <th>名前</th>
-                        <th>作成日</th>
-                        <th>操作</th>
+                        <th>作成日時</th>
+                        <th>更新日時</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach($services as $service)
                     <tr>
-                        <td>{{ $service->id }}</td>
+                        <td><a href="{{ route('services.edit', $service) }}">{{ $service->id }}</a></td>
                         <td>{{ $service->name }}</td>
                         <td>{{ $service->created_at }}</td>
-                        <td>
-                            <a href="{{ route('services.edit', $service) }}" class="btn btn-sm btn-info">編集</a>
-                            <form action="{{ route('services.destroy', $service) }}" method="POST" style="display: inline;">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('本当に削除しますか？')">削除</button>
-                            </form>
-                        </td>
+                        <td>{{ $service->updated_at }}</td>
                     </tr>
                     @endforeach
                 </tbody>

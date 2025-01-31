@@ -9,7 +9,25 @@
 @section('content')
     <div class="card">
         <div class="card-header">
-            <a href="{{ route('events.create') }}" class="btn btn-primary">新規作成</a>
+            <div class="row">
+                <div class="col-md-6">
+                    <form action="{{ route('events.index') }}" method="GET" class="form-inline">
+                        <div class="form-group mr-2">
+                            <select name="service_id" class="form-control" onchange="this.form.submit()">
+                                <option value="">全てのサービス</option>
+                                @foreach($services as $id => $name)
+                                    <option value="{{ $id }}" {{ request('service_id') == $id ? 'selected' : '' }}>
+                                        {{ $name }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-md-6 text-right">
+                    <a href="{{ route('events.create') }}" class="btn btn-primary">新規作成</a>
+                </div>
+            </div>
         </div>
         <div class="card-body">
             <table class="table table-bordered">
@@ -18,30 +36,25 @@
                         <th>ID</th>
                         <th>サービス</th>
                         <th>名前</th>
-                        <th>作成日</th>
-                        <th>操作</th>
+                        <th>URL</th>
+                        <th>作成日時</th>
+                        <th>更新日時</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach($events as $event)
                     <tr>
-                        <td>{{ $event->id }}</td>
+                        <td><a href="{{ route('events.edit', $event) }}">{{ $event->id }}</a></td>
                         <td>{{ $event->service->name }}</td>
                         <td>{{ $event->name }}</td>
+                        <td>{{ $event->url }}</td>
                         <td>{{ $event->created_at }}</td>
-                        <td>
-                            <a href="{{ route('events.edit', $event) }}" class="btn btn-sm btn-info">編集</a>
-                            <form action="{{ route('events.destroy', $event) }}" method="POST" style="display: inline;">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('本当に削除しますか？')">削除</button>
-                            </form>
-                        </td>
+                        <td>{{ $event->updated_at }}</td>
                     </tr>
                     @endforeach
                 </tbody>
             </table>
-            {{ $events->links() }}
+            {{ $events->appends(request()->query())->links() }}
         </div>
     </div>
 @stop

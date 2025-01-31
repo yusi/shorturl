@@ -12,10 +12,18 @@ class EventController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $events = Event::with('service')->latest()->paginate(10);
-        return view('admin.events.index', compact('events'));
+        $services = Service::pluck('name', 'id');
+        $query = Event::with('service')->latest();
+
+        if ($request->filled('service_id')) {
+            $query->where('service_id', $request->service_id);
+        }
+
+        $events = $query->paginate(10);
+
+        return view('admin.events.index', compact('events', 'services'));
     }
 
     /**
@@ -34,7 +42,8 @@ class EventController extends Controller
     {
         $request->validate([
             'service_id' => 'required|exists:services,id',
-            'name' => 'required|max:128'
+            'name' => 'required|max:128',
+            'url' => 'nullable|url|max:256'
         ]);
 
         Event::create($request->all());
@@ -65,7 +74,8 @@ class EventController extends Controller
     {
         $request->validate([
             'service_id' => 'required|exists:services,id',
-            'name' => 'required|max:128'
+            'name' => 'required|max:128',
+            'url' => 'nullable|url|max:256'
         ]);
 
         $event->update($request->all());

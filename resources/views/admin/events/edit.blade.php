@@ -15,9 +15,10 @@
                 <div class="form-group">
                     <label for="service_id">サービス</label>
                     <select class="form-control @error('service_id') is-invalid @enderror" id="service_id" name="service_id">
-                        <option value="">選択してください</option>
                         @foreach($services as $id => $name)
-                            <option value="{{ $id }}" {{ old('service_id', $event->service_id) == $id ? 'selected' : '' }}>{{ $name }}</option>
+                            <option value="{{ $id }}" {{ old('service_id', $event->service_id) == $id ? 'selected' : '' }}>
+                                {{ $name }}
+                            </option>
                         @endforeach
                     </select>
                     @error('service_id')
@@ -31,8 +32,30 @@
                         <span class="invalid-feedback">{{ $message }}</span>
                     @enderror
                 </div>
-                <button type="submit" class="btn btn-primary">更新</button>
-                <a href="{{ route('events.index') }}" class="btn btn-secondary">戻る</a>
+                <div class="form-group">
+                    <label for="url">URL</label>
+                    <input type="text" class="form-control @error('url') is-invalid @enderror" id="url" name="url" value="{{ old('url', $event->url) }}">
+                    @error('url')
+                        <span class="invalid-feedback">{{ $message }}</span>
+                    @enderror
+                </div>
+                <div class="form-group">
+                    <label>作成日時</label>
+                    <input type="text" class="form-control" value="{{ $event->created_at }}" readonly>
+                </div>
+                <div class="form-group">
+                    <label>更新日時</label>
+                    <input type="text" class="form-control" value="{{ $event->updated_at }}" readonly>
+                </div>
+                <div class="btn-group">
+                    <button type="submit" class="btn btn-primary">更新</button>
+                    <a href="{{ route('events.index') }}" class="btn btn-secondary">戻る</a>
+                </div>
+            </form>
+            <form action="{{ route('events.destroy', $event) }}" method="POST" class="mt-3">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="btn btn-danger" onclick="return confirm('本当に削除しますか？')">削除</button>
             </form>
         </div>
     </div>

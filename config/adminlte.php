@@ -14,7 +14,7 @@ return [
     |
     */
 
-    'title' => 'AdminLTE 3',
+    'title' => 'Short URL',
     'title_prefix' => '',
     'title_postfix' => '',
 
@@ -63,7 +63,7 @@ return [
     |
     */
 
-    'logo' => '<b>Admin</b>LTE',
+    'logo' => '<b>Short</b>URL',
     'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
@@ -330,8 +330,19 @@ return [
                     'url'  => 'admin/events',
                     'icon' => 'fas fa-fw fa-calendar',
                 ],
+                [
+                    'text' => 'イベントユーザー一覧',
+                    'url'  => 'admin/event-users',
+                    'icon' => 'fas fa-fw fa-users',
+                ],
             ],
         ],
+        [
+            'text' => '設定管理',
+            'url'  => 'admin/settings',
+            'icon' => 'fas fa-fw fa-cog',
+        ],
+        /*
         ['header' => 'サンプル'],
         [
             'text' => 'blog',
@@ -410,6 +421,7 @@ return [
             'icon_color' => 'cyan',
             'url' => '#',
         ],
+        */
     ],
 
     /*

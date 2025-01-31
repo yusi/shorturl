@@ -30,6 +30,13 @@
                         <span class="invalid-feedback">{{ $message }}</span>
                     @enderror
                 </div>
+                <div class="form-group">
+                    <label for="url">URL</label>
+                    <input type="text" class="form-control @error('url') is-invalid @enderror" id="url" name="url" value="{{ old('url') }}">
+                    @error('url')
+                        <span class="invalid-feedback">{{ $message }}</span>
+                    @enderror
+                </div>
                 <button type="submit" class="btn btn-primary">保存</button>
                 <a href="{{ route('events.index') }}" class="btn btn-secondary">戻る</a>
             </form>

@@ -23,6 +23,10 @@ Route::middleware('auth')->group(function (): void {
     Route::prefix('admin')->middleware(['auth'])->group(function (): void {
         Route::resource('services', ServiceController::class);
         Route::resource('events', \App\Http\Controllers\Admin\EventController::class);
+        Route::resource('event-users', \App\Http\Controllers\Admin\EventUserController::class);
+        Route::get('get-events', [\App\Http\Controllers\Admin\EventUserController::class, 'getEvents'])
+            ->name('get-events');
+        Route::resource('settings', \App\Http\Controllers\Admin\SettingController::class);
     });
 });
 
