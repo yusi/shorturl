@@ -17,5 +17,12 @@
 @stop
 
 @section('js')
-    <script> console.log('ページごとJSの記述'); </script>
+    <script>
+        // Turbolinksを無効化
+        $(document).ready(function() {
+            if (typeof Turbolinks !== 'undefined') {
+                Turbolinks.supported = false;
+            }
+        });
+    </script>
 @stop

@@ -6,7 +6,18 @@ use Illuminate\Database\Eloquent\Model;
 
 class Event extends Model
 {
-    protected $fillable = ['service_id', 'name', 'url'];
+    protected $fillable = [
+        'service_id',
+        'name',
+        'url',
+        'starts_at',
+        'expires_at'
+    ];
+
+    protected $casts = [
+        'starts_at' => 'datetime',
+        'expires_at' => 'datetime',
+    ];
 
     public function service()
     {
