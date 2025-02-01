@@ -43,7 +43,9 @@ class EventController extends Controller
         $request->validate([
             'service_id' => 'required|exists:services,id',
             'name' => 'required|max:128',
-            'url' => 'nullable|url|max:256'
+            'url' => 'nullable|url|max:256',
+            'starts_at' => 'nullable|date',
+            'expires_at' => 'nullable|date|after_or_equal:starts_at'
         ]);
 
         Event::create($request->all());
@@ -75,7 +77,9 @@ class EventController extends Controller
         $request->validate([
             'service_id' => 'required|exists:services,id',
             'name' => 'required|max:128',
-            'url' => 'nullable|url|max:256'
+            'url' => 'nullable|url|max:256',
+            'starts_at' => 'nullable|date',
+            'expires_at' => 'nullable|date|after_or_equal:starts_at'
         ]);
 
         $event->update($request->all());

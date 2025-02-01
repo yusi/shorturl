@@ -15,6 +15,7 @@
                 <div class="form-group">
                     <label for="service_id">サービス</label>
                     <select class="form-control @error('service_id') is-invalid @enderror" id="service_id" name="service_id">
+                        <option value="">選択してください</option>
                         @foreach($services as $id => $name)
                             <option value="{{ $id }}" {{ old('service_id', $event->service_id) == $id ? 'selected' : '' }}>
                                 {{ $name }}
@@ -40,6 +41,36 @@
                     @enderror
                 </div>
                 <div class="form-group">
+                    <label for="starts_at">開始日時</label>
+                    <div class="input-group date" id="starts_at_picker" data-target-input="nearest">
+                        <input type="text" name="starts_at"
+                            class="form-control datetimepicker-input @error('starts_at') is-invalid @enderror"
+                            data-target="#starts_at_picker"
+                            value="{{ old('starts_at', $event->starts_at) }}">
+                        <div class="input-group-append" data-target="#starts_at_picker" data-toggle="datetimepicker">
+                            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                        </div>
+                    </div>
+                    @error('starts_at')
+                        <span class="invalid-feedback">{{ $message }}</span>
+                    @enderror
+                </div>
+                <div class="form-group">
+                    <label for="expires_at">有効期限</label>
+                    <div class="input-group date" id="expires_at_picker" data-target-input="nearest">
+                        <input type="text" name="expires_at"
+                            class="form-control datetimepicker-input @error('expires_at') is-invalid @enderror"
+                            data-target="#expires_at_picker"
+                            value="{{ old('expires_at', $event->expires_at) }}">
+                        <div class="input-group-append" data-target="#expires_at_picker" data-toggle="datetimepicker">
+                            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                        </div>
+                    </div>
+                    @error('expires_at')
+                        <span class="invalid-feedback">{{ $message }}</span>
+                    @enderror
+                </div>
+                <div class="form-group">
                     <label>作成日時</label>
                     <input type="text" class="form-control" value="{{ $event->created_at }}" readonly>
                 </div>
@@ -59,4 +90,33 @@
             </form>
         </div>
     </div>
+@stop
+
+@section('js')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/locale/ja.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.39.0/js/tempusdominus-bootstrap-4.min.js"></script>
+<script>
+    $(function () {
+        $('#starts_at_picker').datetimepicker({
+            format: 'YYYY-MM-DD HH:mm:ss',
+            locale: 'ja',
+            icons: {
+                time: 'far fa-clock'
+            }
+        });
+
+        $('#expires_at_picker').datetimepicker({
+            format: 'YYYY-MM-DD HH:mm:ss',
+            locale: 'ja',
+            icons: {
+                time: 'far fa-clock'
+            }
+        });
+    });
+</script>
+@stop
+
+@section('css')
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.39.0/css/tempusdominus-bootstrap-4.min.css">
 @stop
