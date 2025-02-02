@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\ServiceController;
 use Illuminate\Contracts\View\View;
+use App\Http\Controllers\ShortUrlController;
 
 Route::get('/', function (): View {
     return view('welcome');
@@ -29,5 +30,7 @@ Route::middleware('auth')->group(function (): void {
         Route::resource('settings', \App\Http\Controllers\Admin\SettingController::class);
     });
 });
+
+Route::get('/{key}', [ShortUrlController::class, 'redirect'])->name('shorten.url');
 
 require __DIR__.'/auth.php';
