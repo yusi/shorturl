@@ -9,6 +9,7 @@ class Event extends Model
     protected $fillable = [
         'service_id',
         'name',
+        'key',
         'url',
         'starts_at',
         'expires_at'
