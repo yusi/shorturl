@@ -11,6 +11,7 @@ return new class extends Migration
         Schema::create('events', function (Blueprint $table) {
             $table->id();
             $table->foreignId('service_id')->constrained()->onDelete('cascade');
+            $table->string('key', 10)->collation('utf8mb4_bin');
             $table->string('name', 128);
             $table->timestamps();
         });

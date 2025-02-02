@@ -58,7 +58,7 @@
                         <td><a href="{{ route('event-users.edit', $eventUser) }}">{{ $eventUser->id }}</a></td>
                         <td>{{ $eventUser->event->service->name }}</td>
                         <td>{{ $eventUser->event->name }}</td>
-                        <td>{{ $eventUser->ext_user_id }}</td>
+                        <td>{{ $eventUser->user }}</td>
                         <td>{{ $eventUser->created_at }}</td>
                         <td>{{ $eventUser->updated_at }}</td>
                     </tr>

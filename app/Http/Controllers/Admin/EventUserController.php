@@ -56,7 +56,7 @@ class EventUserController extends Controller
     {
         $request->validate([
             'event_id' => 'required|exists:events,id',
-            'ext_user_id' => 'required|integer'
+            'user' => 'required|integer'
         ]);
 
         EventUser::create($request->all());
@@ -90,7 +90,7 @@ class EventUserController extends Controller
     {
         $request->validate([
             'event_id' => 'required|exists:events,id',
-            'ext_user_id' => 'required|integer'
+            'user' => 'required|integer'
         ]);
 
         $eventUser->update($request->all());
