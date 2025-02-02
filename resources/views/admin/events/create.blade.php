@@ -33,6 +33,13 @@
                     @enderror
                 </div>
                 <div class="form-group">
+                    <label for="key">KEY</label>
+                    <input type="text" class="form-control @error('key') is-invalid @enderror" id="key" name="key" value="{{ old('key') }}">
+                    @error('key')
+                        <span class="invalid-feedback">{{ $message }}</span>
+                    @enderror
+                </div>
+                <div class="form-group">
                     <label for="url">URL</label>
                     <input type="text" class="form-control @error('url') is-invalid @enderror" id="url" name="url" value="{{ old('url') }}">
                     @error('url')

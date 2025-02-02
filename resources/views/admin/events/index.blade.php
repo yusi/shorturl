@@ -18,6 +18,7 @@
                         <th>ID</th>
                         <th>サービス</th>
                         <th>名前</th>
+                        <th>KEY</th>
                         <th>URL</th>
                         <th>開始日時</th>
                         <th>有効期限</th>
@@ -31,6 +32,7 @@
                         <td><a href="{{ route('events.edit', $event) }}">{{ $event->id }}</a></td>
                         <td>{{ $event->service->name }}</td>
                         <td>{{ $event->name }}</td>
+                        <td>{{ $event->key }}</td>
                         <td>{{ $event->url }}</td>
                         <td>{{ $event->starts_at }}</td>
                         <td>{{ $event->expires_at }}</td>
