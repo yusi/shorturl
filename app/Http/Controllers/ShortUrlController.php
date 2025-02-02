@@ -14,7 +14,7 @@ class ShortUrlController extends Controller
         $event = Event::where('key', $key)->first();
 
         if (!$event) {
-            //abort(404);
+            abort(404);
             //return response()->json(['error' => 'Event not found'], 404); // イベントが見つからない場合
         }
 
