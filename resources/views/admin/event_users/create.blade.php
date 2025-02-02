@@ -30,9 +30,9 @@
                     @enderror
                 </div>
                 <div class="form-group">
-                    <label for="ext_user_id">外部ユーザーID</label>
-                    <input type="number" class="form-control @error('ext_user_id') is-invalid @enderror" id="ext_user_id" name="ext_user_id" value="{{ old('ext_user_id') }}">
-                    @error('ext_user_id')
+                    <label for="user">外部ユーザーID</label>
+                    <input type="number" class="form-control @error('user') is-invalid @enderror" id="user" name="user" value="{{ old('user') }}">
+                    @error('user')
                         <span class="invalid-feedback">{{ $message }}</span>
                     @enderror
                 </div>

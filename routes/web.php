@@ -12,7 +12,7 @@ Route::get('/', function (): View {
 
 Route::get('/dashboard', function (): View {
     return view('adminlte');
-})->middleware(['auth', 'verified'])->name('admin');
+})->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function (): void {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

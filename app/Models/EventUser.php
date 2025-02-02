@@ -8,7 +8,7 @@ class EventUser extends Model
 {
     protected $fillable = [
         'event_id',
-        'ext_user_id',
+        'user',
         'count',
     ];
 
