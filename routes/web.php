@@ -11,8 +11,8 @@ Route::get('/', function (): View {
 });
 
 Route::get('/dashboard', function (): View {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+    return view('adminlte');
+})->middleware(['auth', 'verified'])->name('admin');
 
 Route::middleware('auth')->group(function (): void {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -31,6 +31,6 @@ Route::middleware('auth')->group(function (): void {
     });
 });
 
-Route::get('/{key}', [ShortUrlController::class, 'redirect'])->name('shorten.url');
+Route::get('/s/{key}', [ShortUrlController::class, 'redirect'])->name('shorten.url');
 
 require __DIR__.'/auth.php';

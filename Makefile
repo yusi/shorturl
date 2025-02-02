@@ -13,7 +13,7 @@ ps:
 migrate:
 	./vendor/bin/sail artisan migrate
 fresh:
-	./vendor/bin/sail artisan migrate:fresh
+	./vendor/bin/sail artisan migrate:fresh --seed
 seed:
 	./vendor/bin/sail artisan db:seed
 test:
