@@ -32,6 +32,6 @@ Route::middleware('auth')->group(function (): void {
 });
 
 Route::get('/{key}/{user}', [ShortUrlController::class, 'redirect2'])->name('shorten.url2');
-Route::get('/s/{key}',      [ShortUrlController::class, 'redirect'])->name('shorten.url');
+Route::get('/{key}',      [ShortUrlController::class, 'redirect'])->name('shorten.url');
 
 require __DIR__.'/auth.php';
