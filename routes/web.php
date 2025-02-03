@@ -1,10 +1,16 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Admin\ServiceController;
-use Illuminate\Contracts\View\View;
 use App\Http\Controllers\ShortUrlController;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Contracts\View\View;
+use App\Http\Controllers\Admin\ServiceController;
+
+// 認証関連のルートを先に読み込む
+require __DIR__.'/auth.php';
+
+// /login へのアクセスを /user/login にリダイレクト
+Route::redirect('/login', '/user/login');
 
 Route::get('/', function (): View {
     return view('welcome');
@@ -31,7 +37,6 @@ Route::middleware('auth')->group(function (): void {
     });
 });
 
+// ワイルドカードルートを最後に配置
 Route::get('/{key}/{user}', [ShortUrlController::class, 'redirect2'])->name('shorten.url2');
 Route::get('/{key}',      [ShortUrlController::class, 'redirect'])->name('shorten.url');
-
-require __DIR__.'/auth.php';
