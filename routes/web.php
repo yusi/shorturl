@@ -5,6 +5,7 @@ use App\Http\Controllers\ShortUrlController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Contracts\View\View;
 use App\Http\Controllers\Admin\ServiceController;
+use App\Http\Controllers\Admin\Auth\LoginController;
 
 // 認証関連のルートを先に読み込む
 require __DIR__.'/auth.php';
