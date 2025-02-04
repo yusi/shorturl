@@ -12,6 +12,7 @@ class ShortUrlController extends Controller
 {
     public function redirect($eventKey, Request $request)
     {
+        Log::debug("redirect");
         // イベントを取得
         $event = Event::where('key', $eventKey)->first();
         if (!$event) {
