@@ -2,10 +2,15 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ShortUrlController;
-use App\Http\Controllers\Admin\ServiceController;
-use App\Http\Controllers\Admin\Auth\LoginController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Contracts\View\View;
+use App\Http\Controllers\Admin\ServiceController;
+
+// 認証関連のルートを先に読み込む
+require __DIR__.'/auth.php';
+
+// /login へのアクセスを /user/login にリダイレクト
+Route::redirect('/login', '/user/login');
 
 // 管理者認証関連のルートを最初に定義（prefixを削除）
 Route::middleware('guest:admin')->group(function () {
@@ -49,4 +54,4 @@ Route::middleware('auth')->group(function () {
 
 // ワイルドカードルートを最後に配置
 Route::get('/{key}/{user}', [ShortUrlController::class, 'redirect2'])->name('shorten.url2');
-Route::get('/{key}', [ShortUrlController::class, 'redirect'])->name('shorten.url');
+Route::get('/{key}',      [ShortUrlController::class, 'redirect'])->name('shorten.url');
